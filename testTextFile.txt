@@ -1,0 +1,5 @@
+Hola,
+
+este archivo de texto fue creado con el fin de formar parte del video demostración sobre git a través de la consola de comandos.
+
+Este video fue creado por Thiago Schreck.
