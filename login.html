@@ -18,7 +18,7 @@
         body {
             height: 100%;
         }
-        
+
         body {
             display: -ms-flexbox;
             display: flex;
@@ -36,13 +36,22 @@
 <div style="margin: auto">
     <img class="signin_img" src="img/login.png" alt="Login image">
     <div class="signin">
-        <form action="index.html">
+        <form id="form" action="index.html">
             <div class="signin_items">
-                <input type="email" class="form-control" placeholder="Correo electrónico" required="" autofocus="">
-                <input type="password" class="form-control" placeholder="Contraseña" required="" autofocus="">
-                <input type="checkbox" id="chk_remember">
-                <label for="chk_remember">Recuérdame</label>
-                <button id="btn_ingresar" class="btn btn-primary btn-lg btn-block">Ingresar</button></div>
+                <div class="input-group mb-3">
+                    <input type="email" id="email" class="form-control" placeholder="Correo electrónico" required>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" id="pwd" class="form-control" placeholder="Contraseña" required>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <input type="checkbox" id="chk_remember">
+                        </div>
+                    </div>
+                </div>
+                <button id="btn_ingresar" class="btn btn-primary btn-lg btn-block">Ingresar</button>
+                <button class="btn btn-secondary btn-sm btn-block">Registrarme</button>
+            </div>
         </form>
     </div>
 </div>
