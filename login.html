@@ -32,33 +32,33 @@
         }
     </style>
 </head>
-
-<div style="margin: auto">
-    <img class="signin_img" src="img/login.png" alt="Login image">
-    <div class="signin">
-        <form id="form" action="index.html">
-            <div class="signin_items">
-                <div class="input-group mb-3">
-                    <input type="email" id="email" class="form-control" placeholder="Correo electrónico" required>
-                </div>
-                <div class="input-group mb-3">
-                    <input type="password" id="pwd" class="form-control" placeholder="Contraseña" required>
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <input type="checkbox" id="chk_remember">
+<body>
+    <div style="margin: auto">
+        <img class="signin_img" src="img/login.png" alt="Login image">
+        <div class="signin">
+            <form id="form" action="index.html">
+                <div class="signin_items">
+                    <div class="input-group mb-3">
+                        <input type="email" id="email" class="form-control" placeholder="Correo electrónico" required>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password" id="pwd" class="form-control" placeholder="Contraseña" required>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <input type="checkbox" id="chk_remember" data-toggle="popover" data-trigger="hover" data-content="Guardar credenciales">
+                            </div>
                         </div>
                     </div>
+                    <button id="btn_ingresar" class="btn btn-primary btn-lg btn-block">Ingresar</button>
+                    <button class="btn btn-secondary btn-sm btn-block">Registrarme</button>
                 </div>
-                <button id="btn_ingresar" class="btn btn-primary btn-lg btn-block">Ingresar</button>
-                <button class="btn btn-secondary btn-sm btn-block">Registrarme</button>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 
 
-<script src="js/init.js"></script>
-<script src="js/login.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/login.js"></script>
 
 </body>
 
