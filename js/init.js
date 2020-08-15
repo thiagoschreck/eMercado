@@ -50,6 +50,10 @@ function getFileName()
      return lastUri;
 }
 
+if (localStorage.getItem('usuario') != null){
+  sessionStorage.setItem('usuario', localStorage.getItem('usuario'));
+}
+
 if (sessionStorage.getItem('usuario') === null && getFileName() != "login.html") {
   location.replace('login.html');
 }
