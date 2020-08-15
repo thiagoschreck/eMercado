@@ -40,8 +40,21 @@ var getJSONData = function(url){
     });
 }
 
+function getFileName()
+{
+  var url = window.location.pathname;
+  var lastUri = url.substring(url.lastIndexOf('/')+1);
+  if(lastUri.indexOf('?')!= -1)
+     return lastUri.substring(0,lastUri.indexOf('?'));
+  else
+     return lastUri;
+}
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
+  if (sessionStorage.getItem('usuario') === null && getFileName() != "login.html") {
+    location.replace('login.html');
+  }
 });
