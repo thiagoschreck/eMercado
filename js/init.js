@@ -57,4 +57,7 @@ document.addEventListener("DOMContentLoaded", function(e){
   if (sessionStorage.getItem('usuario') === null && getFileName() != "login.html") {
     location.replace('login.html');
   }
+  if (sessionStorage.getItem('usuario') != null && getFileName() == "login.html") {
+    location.replace('index.html');
+  }
 });
