@@ -33,6 +33,10 @@ btn_ingresar.addEventListener("mousedown", function(event){
     btn_ingresar.setAttribute("style", "background-color: green")
 });
 
+btn_ingresar.addEventListener("mouseup", function(event){
+    btn_ingresar.setAttribute("style", "background-color: rgb(214, 28, 108)")
+});
+
 btn_ingresar.addEventListener("mouseleave", function(event){
     btn_ingresar.setAttribute("style", "background-color: rgb(214, 28, 108)")
 });
