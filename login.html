@@ -3,9 +3,11 @@
 <html lang="en">
 
 <head>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
+    <meta name="google-signin-client_id" content="932735781756-slo4k4tf97qijnhgf3p48dm7fhaf5cfb.apps.googleusercontent.com"> <!-- no me lo roben porfa -->
     <title>eMercado - Todo lo que busques está aquí</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
@@ -50,6 +52,7 @@
                         </div>
                     </div>
                     <button id="btn_ingresar" class="btn btn-primary btn-lg btn-block">Ingresar</button>
+                    <div id="g-signin_loginscreen" class="g-signin2" data-onsuccess="onSignIn">Acceder</div>
                     <button id="btn_registro" class="btn btn-secondary btn-sm btn-block">Registrarme</button>
                 </div>
             </form>
