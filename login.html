@@ -54,10 +54,11 @@
                     <button id="btn_ingresar" class="btn btn-primary btn-lg btn-block">Ingresar</button>
                     <div id="g-signin_loginscreen" class="g-signin2" data-onsuccess="onSignIn">Acceder</div>
                     <script>
+                        var profile = googleUser.getBasicProfile();
                         function onSignIn(googleUser){
                             let usuario = Array({
-                                correo: googleUser.getBasicProfile().getEmail().value,
-                                pass: googleUser.getBasicProfile().getID().value
+                                correo: profile.getEmail().value,
+                                pass: profile.getID().value
                             });
                             localStorage.setItem('usuario', JSON.stringify(usuario));
                             location.href='./index.html';
