@@ -23,6 +23,17 @@
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
       <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
+      <div class="dropdown">
+        <button id="dropdown_perfil" class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Nombre
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a id="logoff" class="py-2 d-none d-md-inline-block dropdown-item" onclick="logoff()" href="">Cerrar sesión</a>
+        </div>
+      </div>
+      <script type="text/javascript">
+        function logoff(){ localStorage.removeItem("usuario"); sessionStorage.removeItem("usuario"); }
+      </script>
     </div>
   </nav>
   <main role="main">

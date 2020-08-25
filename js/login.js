@@ -11,8 +11,9 @@ form.addEventListener("submit", function (event) {
 		correo: email.value,
 		pass: pwd.value
     });
+
     if(chk_remember.checked == true){
-        localStorage.setItem('usuario', JSON.stringify(usuario));
+        localStorage.setItem('usuario', JSON.stringify(usuario["correo"]));
         location.href='./index.html';
     }
     else{
