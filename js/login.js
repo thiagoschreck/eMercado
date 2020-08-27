@@ -7,17 +7,17 @@ const btn_registro = document.getElementById("btn_registro");
 
 form.addEventListener("submit", function (event) {
 	event.preventDefault()
-	let usuario = Array({
-		correo: email.value,
-		pass: pwd.value
-    });
+	let usuario = email.value;
+	let password = pwd.value;
 
     if(chk_remember.checked == true){
-        localStorage.setItem('usuario', JSON.stringify(usuario["correo"]));
+        localStorage.setItem('usuario', usuario);
+        localStorage.setItem('password', password);
         location.href='./index.html';
     }
     else{
-        sessionStorage.setItem('usuario', JSON.stringify(usuario));
+        sessionStorage.setItem('usuario', usuario);
+        sessionStorage.setItem('password', password);
         location.href='./index.html';
     }
 });
