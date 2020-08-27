@@ -45,25 +45,23 @@
       <div class="text-center p-4">
         <h2>Listado de productos</h2>
       </div>
+
       <div class="container">
-        <div class="row">
-          <div class="col text-right">
+        <div class="row justify-content-end">
+          <div class="col-md-6" style="padding-left: 0px;">
             <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
-              <label class="btn btn-light" id="sortDesc">
+              <label class="btn btn-outline-secondary border" id="sortDesc">
                 <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"> $</i>
               </label>
-              <label class="btn btn-light" id="sortAsc">
+              <label class="btn btn-outline-secondary border" id="sortAsc">
                 <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-up mr-1"> $</i>
               </label>
-              <label class="btn btn-light" id="sortRel">
+              <label class="btn btn-outline-secondary border" id="sortRel">
                 <input type="radio" name="options" autocomplete="off">Relevancia
               </label>
             </div>
           </div>
-        </div>
-        <div class="row justify-content-end">
-          <div class="col-md-6"></div>
-          <div class="col-md-6 col-sm-12 mb-1 container">
+          <div class="col-md-6 col-sm-12 mb-1 container" style="padding-right: 0px;">
             <div class="row container p-0 m-0">
               <div class="col">
                 <p class="font-weight-normal text-right my-2">Precio</p>
@@ -76,15 +74,16 @@
               </div>
               <div class="col-3 p-0">
                 <div class="btn-group" role="group">
-                  <button class="btn btn-light btn-block" id="rangeFilterCost">Filtrar</button>
-                  <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
+                  <button class="btn btn-outline-secondary border btn-block" id="rangeFilterCost">Filtrar</button>
+                  <button class="btn btn-outline-secondary border btn-sm" id="clearRangeFilter">Limpiar</button>
                 </div>
               </div>
             </div>
           </div>
           <div class="container">
             <div class="row">
-              <input class="form-control" id="searchBar" type="search" placeholder="Escriba el producto que desea buscar">
+              <input class="form-control" id="searchBar" type="search"
+                placeholder="Escriba el producto que desea buscar">
               <br><br>
               <div class="list-group" id="prod-list-container">
               </div>
