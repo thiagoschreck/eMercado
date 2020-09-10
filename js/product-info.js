@@ -7,7 +7,7 @@ function showCarousel(array) {
     let htmlContentToAppend = "";
     let imageHTML = `
     <div class="carousel-item active">
-    <img class="d-block w-100" src="`+ array[0] +`" alt="Slide `+ 1 +`">
+    <img id="active-carousel-img" class="d-block w-100" onclick=zoomIn(\"prod-info-carousel\") src="`+ array[0] +`" alt="Slide `+ 1 +`">
     </div>
     `;
     let indicatorsHTML = `
@@ -18,7 +18,7 @@ function showCarousel(array) {
         let imageSrc = array[i];
 
         imageHTML += `
-            <div class="carousel-item">
+            <div class="carousel-item" onclick=zoomIn(\"prod-info-carousel\")>
             <img class="d-block w-100" src="`+ imageSrc +`" alt="Slide `+ i +`">
             </div>
         `;
@@ -52,6 +52,44 @@ function showCarousel(array) {
 			"productImagesGallery"
 		).innerHTML = htmlContentToAppend;
 	
+}
+
+var carouselClicked = 0;
+function zoomIn(elementID){
+    let element = document.getElementById(elementID);
+    if (carouselClicked === 0){
+        saveStyle = element.style;
+        element.style += `
+            -ms-transform: scale(1.3) translateX(30%);; /* IE 9 */
+            -webkit-transform: scale(1.3) translateX(30%);; /* Safari 3-8 */
+            transform: scale(1.3) translateX("30%");
+            margin: auto;
+            cursor: -moz-zoom-out; 
+            cursor: -webkit-zoom-out; 
+            cursor: zoom-out;
+        `
+        carouselClicked = 1;
+    }
+    else{
+        saveStyle = element.style;
+        element.style = `
+            padding: 0 0 0;
+            padding-left: 15px;
+            margin-right: 30px;
+            transition: transform 0.5s;
+            cursor: -moz-zoom-in; 
+            cursor: -webkit-zoom-in; 
+            cursor: zoom-in;
+        `
+        carouselClicked = 0;
+    }
+
+}
+
+function mouseZoom(elementID){
+    let element = document.getElementById(elementID)
+    if (carouselClicked === 0){
+    }
 }
 
 function createCard(object){
