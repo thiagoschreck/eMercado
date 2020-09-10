@@ -48,32 +48,35 @@
       <h3 id="productName"></h3>
       <hr class="my-3">
       <dl>
-        <dt><h5>Precio</h5></dt>
-        <dd>
-          <p id="productCost"></p>
-        </dd>
-
-        <dt><h5>Descripción</h5></dt>
-        <dd>
-          <p id="productDescription"></p>
-        </dd>
-
-        <dt><h5>Categorías</h5></dt>
-        <dd>
-          <p id="productCategory"></p>
-        </dd>
-        
-        <dt><h5>Cantidad de vendidos</h5></dt>
-        <dd>
-          <p id="productSoldCount"></p>
-        </dd>
-
-        <dt><h5>Imágenes ilustrativas</h5></dt>
-        <dd>
-          <div class="row text-center text-lg-left pt-2" id="productImagesGallery">
+        <div class="flex-container">
+          <div class="column">
+            <dd>
+              <div class="row text-center text-lg-left pt-2" id="productImagesGallery">
+              </div>
+            </dd>
           </div>
-        </dd>
-        
+          <div class="column">
+            <dt>Descripción</dt>
+            <dd>
+              <p id="productDescription"></p>
+            </dd>
+            <dt>Precio</dt>
+            <dd>
+              <p id="productCost"></p>
+            </dd>
+            <dt>Cantidad de vendidos</dt>
+            <dd>
+              <p id="productSoldCount"></p>
+            </dd>
+            <dt>Categorías</dt>
+            <dd>
+              <p id="productCategory"></p>
+            </dd>
+          </div>
+        </div>
+        <br>
+        <hr>
+        <br>
         <dt><h5>Productos relacionados</h5></dt>
         <dd>
           <div id="productRelated"></div>

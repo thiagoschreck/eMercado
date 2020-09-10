@@ -3,36 +3,64 @@ var currentCommentsArray = [];
 var currentRelatedArray = [];
 var product = {};
 
-function showImagesGallery(array) {
-	let htmlContentToAppend = "";
+function showCarousel(array) {
+    let htmlContentToAppend = "";
+    let imageHTML = `
+    <div class="carousel-item active">
+    <img class="d-block w-100" src="`+ array[0] +`" alt="Slide `+ 1 +`">
+    </div>
+    `;
+    let indicatorsHTML = `
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    `;
+    
+    for (let i = 1; i < array.length; i++) {
+        let imageSrc = array[i];
 
-	for (let i = 0; i < array.length; i++) {
-		let imageSrc = array[i];
+        imageHTML += `
+            <div class="carousel-item">
+            <img class="d-block w-100" src="`+ imageSrc +`" alt="Slide `+ i +`">
+            </div>
+        `;
+
+        indicatorsHTML += `
+            <li data-target="#carouselExampleIndicators" data-slide-to="`+ i +`"></li>
+        `;
+    }
 
 		htmlContentToAppend +=
 			`
-        <div class="col-lg-3 col-md-4 col-6">
-            <div class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="` +
-			imageSrc +
-			`" alt="">
-            </div>
+        <div id="prod-info-carousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">`
+            + indicatorsHTML +
+        `</ol>
+        <div class="carousel-inner">`
+            + imageHTML +
+        `</div>
+        <a class="carousel-control-prev" href="#prod-info-carousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#prod-info-carousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
         </div>
         `;
 
 		document.getElementById(
 			"productImagesGallery"
 		).innerHTML = htmlContentToAppend;
-	}
+	
 }
 
 function createCard(object){
     let card = `
-        <div class="card bg-dark text-white withzoom" style="width: 18rem; height:22em; margin-right: 1em";>
+        <div class="card withzoom" style="width: 18em; height:23em; margin-right: 1em";>
         <img class="card-img-top" src="`+ object.imgSrc +`" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">`+ object.name +`</h5>
-            <p class="card-text">`+ object.description +`</p>
+            <p class="card-text"><hr>`+ object.description +`</p>
         </div>
         </div>
     `
@@ -47,10 +75,10 @@ function showRelatedProducts(array){
 
             htmlContentToAppend += `
             <div style="display:flex;">
-            <div> <a href="./product-info.html" style="text-decoration: none;">`+
+            <div> <a class="custom-card" href="./product-info.html" style="text-decoration: none;">`+
             createCard(product1) + `
             </div> </a>
-            <div> <a href="./product-info.html" style="text-decoration: none">` +
+            <div> <a class="custom-card" href="./product-info.html" style="text-decoration: none">` +
             createCard(product2) + `            
             </div> </a>
             </div>
@@ -124,8 +152,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
 				'<a href="./category-info.html">' + product.category + "</a>";
 			productSoldCountHTML.innerHTML = product.soldCount;
 
-			//Muestro las imagenes en forma de galería
-			showImagesGallery(product.images);
+            //Muestro las imagenes en forma de galería
+            showCarousel(product.images);
 		}
 	});
 });
