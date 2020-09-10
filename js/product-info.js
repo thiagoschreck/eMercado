@@ -26,6 +26,19 @@ function showImagesGallery(array) {
 	}
 }
 
+function createCard(object){
+    let card = `
+        <div class="card bg-dark text-white withzoom" style="width: 18rem; height:22em; margin-right: 1em";>
+        <img class="card-img-top" src="`+ object.imgSrc +`" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">`+ object.name +`</h5>
+            <p class="card-text">`+ object.description +`</p>
+        </div>
+        </div>
+    `
+    return card;
+}
+
 function showRelatedProducts(array){
 
     let htmlContentToAppend = "";
@@ -34,12 +47,12 @@ function showRelatedProducts(array){
 
             htmlContentToAppend += `
             <div style="display:flex;">
-            <div style="width: 250px; margin-right: 0.5rem">
-                ` + product1.name + `<br> <img class="img-fluid img-thumbnail" width="100%" src="` + product1.imgSrc + `" alt=""></img>
-            </div>
-            <div style="width: 250px">
-                ` + product2.name + `<br> <img class="img-fluid img-thumbnail" width="100%" src="` + product2.imgSrc + `" alt=""></img>
-            </div>
+            <div> <a href="./product-info.html" style="text-decoration: none;">`+
+            createCard(product1) + `
+            </div> </a>
+            <div> <a href="./product-info.html" style="text-decoration: none">` +
+            createCard(product2) + `            
+            </div> </a>
             </div>
             `
         document.getElementById("productRelated").innerHTML = htmlContentToAppend;

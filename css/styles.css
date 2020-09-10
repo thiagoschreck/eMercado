@@ -139,6 +139,13 @@ footer p {
 	width: 100%;
 }
 
+.withzoom:hover {
+	-ms-transform: scale(1.1); /* IE 9 */
+	-webkit-transform: scale(1.1); /* Safari 3-8 */
+	transform: scale(1.05);
+	transition: transform .2s ease;
+  }
+
 @keyframes lds-ring {
 	0% {
 		transform: rotate(0deg);
@@ -165,19 +172,19 @@ footer p {
 }
 
 #btn_ingresar:hover {
-	transform:scale(1.1,1.1);
+	transform: scale(1.1, 1.1);
 }
 
 #btn_registro:hover {
-	transform:scale(1.1,1.1);
+	transform: scale(1.1, 1.1);
 }
 
 #precio {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 100px;
-    text-align: right;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 100px;
+	text-align: right;
 }
 
 /* #g-signin_loginscreen > div{
