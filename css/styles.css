@@ -141,7 +141,7 @@ footer p {
 
 .withzoom
 {
-     transition: transform 0.3s;
+     transition: transform 0.5s;
 }
 
 .withzoom:hover {
