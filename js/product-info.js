@@ -1,7 +1,17 @@
+const commentForm = document.getElementById("commentForm");
 var currentProductsArray = [];
 var currentCommentsArray = [];
 var currentRelatedArray = [];
 var product = {};
+var carouselClicked = 0;
+var rating = 0;
+var commentID = 1;
+var commentContent = {
+    description: '',
+    score: '',
+    dateTime: '',
+    user: ''
+}
 
 function showCarousel(array) {
     let htmlContentToAppend = "";
@@ -54,11 +64,9 @@ function showCarousel(array) {
 	
 }
 
-var carouselClicked = 0;
 function zoomIn(elementID){
     let element = document.getElementById(elementID);
     if (carouselClicked === 0){
-        saveStyle = element.style;
         element.style += `
             -ms-transform: scale(1.3) translateX(30%);; /* IE 9 */
             -webkit-transform: scale(1.3) translateX(30%);; /* Safari 3-8 */
@@ -71,7 +79,6 @@ function zoomIn(elementID){
         carouselClicked = 1;
     }
     else{
-        saveStyle = element.style;
         element.style = `
             padding: 0 0 0;
             padding-left: 15px;
@@ -146,11 +153,11 @@ function showComments(array){
             <div class="list-group-item list-group-item-action">
                 <div class="row">
                     <div class="col-3">
-                    <i class="fas fa-user"></i>`+ " " + comment.user +`
+                        <i class="fas fa-user"></i>`+ " " + comment.user +`
                     </div>
                     <div class="col">
                         <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">` + stars + `
+                            <h5 class="mb-4">` + stars + `
                             <small class="text-muted">` + comment.dateTime + ` </small>
                         </div>
                         <p class="mb-1">` + comment.description + `</p>
@@ -158,10 +165,45 @@ function showComments(array){
                 </div>
             </div>
             `
-        document.getElementById("productComments").innerHTML = htmlContentToAppend;
-	}
+    }
+    document.getElementById("productComments").innerHTML += htmlContentToAppend;
 }
 
+function fillStars(number){
+    for (let i=1; i<=number; i++){
+        let starID = "star" + i;
+        document.getElementById(starID).className="fa fa-star checked";
+    }
+}
+
+function emptyStars(number){
+    for (let i=1; i<=number; i++){
+        let starID = "star" + i;
+        let chkstarID = "chkstar" + i;
+        if (document.getElementById(chkstarID).checked === false){
+            document.getElementById(starID).className="fa fa-star-o";
+        }
+    }
+}
+
+function changeRate(number){
+    if (number != rating){
+        rating = number;
+        for (let i=1; i<=rating; i++){
+            let starID = "star" + i;
+            let chkstarID = "chkstar" + i;
+            document.getElementById(starID).className="fa fa-star checked";
+            document.getElementById(chkstarID).checked = true;
+        }
+        for (let i=5; i>rating; i--){
+            let starID = "star" + i;
+            let chkstarID = "chkstar" + i;
+            document.getElementById(starID).className="fa fa-star-o";
+            document.getElementById(chkstarID).checked = false;
+        }
+    }
+    alert(rating);
+}
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
@@ -213,6 +255,61 @@ document.addEventListener("DOMContentLoaded", function(e){
             currentRelatedArray = resultObj.data;
             showRelatedProducts(currentRelatedArray);
         }
+    });
+
+    document.getElementById("star1").addEventListener("mouseenter", function(e){
+        fillStars(1);
+    });
+    document.getElementById("star2").addEventListener("mouseenter", function(e){
+        fillStars(2);
+    });
+    document.getElementById("star3").addEventListener("mouseenter", function(e){
+        fillStars(3);
+    });
+    document.getElementById("star4").addEventListener("mouseenter", function(e){
+        fillStars(4);
+    });
+    document.getElementById("star5").addEventListener("mouseenter", function(e){
+        fillStars(5);
+    });
+    document.getElementById("star1").addEventListener("mouseleave", function(e){
+        emptyStars(1);
+    });
+    document.getElementById("star2").addEventListener("mouseleave", function(e){
+        emptyStars(2);
+    });
+    document.getElementById("star3").addEventListener("mouseleave", function(e){
+        emptyStars(3);
+    });
+    document.getElementById("star4").addEventListener("mouseleave", function(e){
+        emptyStars(4);
+    });
+    document.getElementById("star5").addEventListener("mouseleave", function(e){
+        emptyStars(5);
+    });
+    document.getElementById("star1").addEventListener("mousedown", function(e){
+        changeRate(1);
+    });
+    document.getElementById("star2").addEventListener("mousedown", function(e){
+        changeRate(2);
+    });
+    document.getElementById("star3").addEventListener("mousedown", function(e){
+        changeRate(3);
+    });
+    document.getElementById("star4").addEventListener("mousedown", function(e){
+        changeRate(4);
+    });
+    document.getElementById("star5").addEventListener("mousedown", function(e){
+        changeRate(5);
+    });
+
+    commentForm.addEventListener("submit", function (event){
+        event.preventDefault();
+        commentContent.description = document.getElementById("commentArea").value;
+        commentContent.score = rating;
+        commentContent.dateTime = new Date().toLocaleString()
+        commentContent.user = sessionStorage.getItem("usuario");
+        showComments([commentContent]);
     });
 });
     // TODO Related products

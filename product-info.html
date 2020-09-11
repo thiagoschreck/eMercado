@@ -13,6 +13,8 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -24,15 +26,17 @@
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
       <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
       <div class="dropdown">
-        <button id="dropdown_perfil" class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button id="dropdown_perfil" class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
           Nombre
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a id="logoff" class="py-2 d-none d-md-inline-block dropdown-item" onclick="logoff()" href="">Cerrar sesión</a>
+          <a id="logoff" class="py-2 d-none d-md-inline-block dropdown-item" onclick="logoff()" href="">Cerrar
+            sesión</a>
         </div>
       </div>
       <script type="text/javascript">
-        function logoff(){ localStorage.removeItem("usuario"); sessionStorage.removeItem("usuario"); }
+        function logoff() { localStorage.removeItem("usuario"); sessionStorage.removeItem("usuario"); }
       </script>
     </div>
     </div>
@@ -77,14 +81,50 @@
         <br>
         <hr>
         <br>
-        <dt><h5>Productos relacionados</h5></dt>
+        <dt>
+          <h5>Productos relacionados</h5>
+        </dt>
         <dd>
           <div id="productRelated"></div>
         </dd>
         <br>
-        <dt><h5>Comentarios</h5></dt>
+        <dt>
+          <h5>Comentarios</h5>
+        </dt>
         <dd>
           <div id="productComments"></div>
+        </dd>
+        <dd>
+          <div id="commentBox">
+            <form id="commentForm">
+                 <div id="commentItems">
+                  <textarea id="commentArea" class="form-control block" cols="20" rows="3" id="comment"></textarea>
+                   <div id="starRating" style="width:fit-content; height: fit-parent; margin: auto;">
+                    <label for="chkstar1">
+                      <i id="star1" class="fa fa-star-o" style="font-size:24px; margin-top: 10px;"></i>
+                    </label>
+                    <input type="checkbox" id="chkstar1" class="hidecheckbox">
+                    <label for="chkstar2">
+                      <i id="star2"  class="fa fa-star-o" style="font-size:24px"></i>
+                    </label>
+                    <input type="checkbox" id="chkstar2" class="hidecheckbox">
+                    <label for="chkstar3">
+                      <i id="star3"  class="fa fa-star-o" style="font-size:24px"></i>
+                    </label>
+                    <input type="checkbox" id="chkstar3" class="hidecheckbox">
+                    <label for="chkstar4">
+                      <i id="star4"  class="fa fa-star-o" style="font-size:24px"></i>
+                    </label>
+                    <input type="checkbox" id="chkstar4" class="hidecheckbox">
+                    <label for="chkstar5">
+                      <i id="star5"  class="fa fa-star-o" style="font-size:24px"></i>
+                    </label>
+                    <input type="checkbox" id="chkstar5" class="hidecheckbox">
+                   </div>
+                  <button class="btn-primary btn-block btn-lg" style="margin-top: 0.35em">Publicar comentario</button>
+                 </div>
+            </form>
+          </div>
         </dd>
       </dl>
     </div>
