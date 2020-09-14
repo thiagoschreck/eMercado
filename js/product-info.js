@@ -173,6 +173,7 @@ function fillStars(number){
     for (let i=1; i<=number; i++){
         let starID = "star" + i;
         document.getElementById(starID).className="fa fa-star checked";
+        console.log("Checking " + starID);
     }
 }
 
@@ -182,6 +183,7 @@ function emptyStars(number){
         let chkstarID = "chkstar" + i;
         if (document.getElementById(chkstarID).checked === false){
             document.getElementById(starID).className="fa fa-star-o";
+            console.log("Unchecking " + starID);
         }
     }
 }
@@ -194,15 +196,17 @@ function changeRate(number){
             let chkstarID = "chkstar" + i;
             document.getElementById(starID).className="fa fa-star checked";
             document.getElementById(chkstarID).checked = true;
+            console.log("Checking " + starID);
         }
         for (let i=5; i>rating; i--){
             let starID = "star" + i;
             let chkstarID = "chkstar" + i;
             document.getElementById(starID).className="fa fa-star-o";
             document.getElementById(chkstarID).checked = false;
+            console.log("Unchecking " + starID);
         }
     }
-    alert(rating);
+    console.log(rating);
 }
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
@@ -257,19 +261,34 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
     });
 
-    document.getElementById("star1").addEventListener("mouseenter", function(e){
+    document.getElementById("star1").addEventListener("mouseup", function(e){
+        changeRate(1);
+    });
+    document.getElementById("star2").addEventListener("mouseup", function(e){
+        changeRate(2);
+    });
+    document.getElementById("star3").addEventListener("mouseup", function(e){
+        changeRate(3);
+    });
+    document.getElementById("star4").addEventListener("mouseup", function(e){
+        changeRate(4);
+    });
+    document.getElementById("star5").addEventListener("mouseup", function(e){
+        changeRate(5);
+    });
+    document.getElementById("star1").addEventListener("mouseover", function(e){
         fillStars(1);
     });
-    document.getElementById("star2").addEventListener("mouseenter", function(e){
+    document.getElementById("star2").addEventListener("mouseover", function(e){
         fillStars(2);
     });
-    document.getElementById("star3").addEventListener("mouseenter", function(e){
+    document.getElementById("star3").addEventListener("mouseover", function(e){
         fillStars(3);
     });
-    document.getElementById("star4").addEventListener("mouseenter", function(e){
+    document.getElementById("star4").addEventListener("mouseover", function(e){
         fillStars(4);
     });
-    document.getElementById("star5").addEventListener("mouseenter", function(e){
+    document.getElementById("star5").addEventListener("mouseover", function(e){
         fillStars(5);
     });
     document.getElementById("star1").addEventListener("mouseleave", function(e){
@@ -286,21 +305,6 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
     document.getElementById("star5").addEventListener("mouseleave", function(e){
         emptyStars(5);
-    });
-    document.getElementById("star1").addEventListener("mousedown", function(e){
-        changeRate(1);
-    });
-    document.getElementById("star2").addEventListener("mousedown", function(e){
-        changeRate(2);
-    });
-    document.getElementById("star3").addEventListener("mousedown", function(e){
-        changeRate(3);
-    });
-    document.getElementById("star4").addEventListener("mousedown", function(e){
-        changeRate(4);
-    });
-    document.getElementById("star5").addEventListener("mousedown", function(e){
-        changeRate(5);
     });
 
     commentForm.addEventListener("submit", function (event){
