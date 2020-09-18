@@ -2,6 +2,7 @@ const commentForm = document.getElementById("commentForm");
 var currentProductsArray = [];
 var currentCommentsArray = [];
 var currentRelatedArray = [];
+var productInfo = [];
 var product = {};
 var carouselClicked = 0;
 var rating = 0;
@@ -112,23 +113,18 @@ function createCard(object){
     return card;
 }
 
-function showRelatedProducts(array){
-
+function showRelatedProducts(productArray, relatedProducts){
     let htmlContentToAppend = "";
-		let product1 = array[1];
-        let product2 = array[3]; 
-
-            htmlContentToAppend += `
-            <div style="display:flex;">
-            <div> <a class="custom-card" href="./product-info.html" style="text-decoration: none;">`+
-            createCard(product1) + `
-            </div> </a>
-            <div> <a class="custom-card" href="./product-info.html" style="text-decoration: none">` +
-            createCard(product2) + `            
-            </div> </a>
-            </div>
-            `
+    for (let i=0; i<relatedProducts.length; i++){
+        htmlContentToAppend += `
+        <div> 
+            <a class="custom-card" href="./product-info.html" style="text-decoration: none;">`+
+                createCard(productArray[relatedProducts[i]]) + `
+            </a>
+        </div> 
+        `
         document.getElementById("productRelated").innerHTML = htmlContentToAppend;
+    }
 }
 
 function showComments(array){
@@ -256,8 +252,19 @@ document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(PRODUCTS_URL).then(function(resultObj){
         if (resultObj.status === "ok")
         {
-            currentRelatedArray = resultObj.data;
-            showRelatedProducts(currentRelatedArray);
+        currentRelatedArray = resultObj.data;
+            getJSONData(PRODUCT_INFO_URL).then(function(resultObj){
+                if (resultObj.status === "ok")
+                {
+                    productInfo = resultObj.data;
+                    //Formatea productInfo para que solo tome relatedProducts y los
+                    //convierta en un array
+                    productInfo = JSON.stringify(productInfo.relatedProducts);
+                    productInfo = productInfo.replace("[","").replace("]","")
+                    productInfo = productInfo.split(",")
+                    showRelatedProducts(currentRelatedArray, productInfo);
+                }
+            })
         }
     });
 
