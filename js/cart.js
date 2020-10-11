@@ -32,7 +32,7 @@ function loadCartList(array){
         currency[i]=(product.currency);
         if(currency[i]=="USD"){
             price[i]=product.unitCost;
-            precioCarrito += price[i]*quantity[i]*42;
+            precioCarrito += price[i]*quantity[i]*40;
         }
         else{
             price[i]=product.unitCost;
