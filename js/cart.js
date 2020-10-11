@@ -55,7 +55,7 @@ function loadCartList(array){
                 precioCarrito = 0;
                 for(j = 0; j < articleRow.length; j++){
                     if(currency[j] == "USD"){
-                        precioCarrito += Math.round(price[j]*quantity[j]*42);
+                        precioCarrito += Math.round(price[j]*quantity[j]*40);
                     }
                     else{
                         precioCarrito += Math.round(price[j]*quantity[j]);
