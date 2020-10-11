@@ -47,35 +47,35 @@ function loadCartList(array){
         
     let articleRow = document.getElementsByClassName("articleRow");
     let articleTotal = document.getElementsByClassName("articleTotal");
-        for (let i = 0; i < articleRow.length; i++){
-            articleRow[i].addEventListener("change", function(){
-                quantity[i] = document.getElementsByClassName("articleQuantity")[i].value;
-                articleTotal[i].innerHTML = currency[i] + " " + (price[i] * quantity[i]);
+    for (let i = 0; i < articleRow.length; i++){
+        articleRow[i].addEventListener("change", function(){
+            quantity[i] = document.getElementsByClassName("articleQuantity")[i].value;
+            articleTotal[i].innerHTML = currency[i] + " " + (price[i] * quantity[i]);
                 
-                precioCarrito = 0;
-                for(j = 0; j < articleRow.length; j++){
-                    if(currency[j] == "USD"){
-                        precioCarrito += Math.round(price[j]*quantity[j]*40);
-                    }
-                    else{
-                        precioCarrito += Math.round(price[j]*quantity[j]);
-                    }
+            precioCarrito = 0;
+            for(j = 0; j < articleRow.length; j++){
+                if(currency[j] == "USD"){
+                    precioCarrito += Math.round(price[j]*quantity[j]*40);
                 }
-                document.getElementById("productCostText").innerHTML = "UYU " + precioCarrito;
-                switch (currentTax){
-                    case 0: 
-                        updateTax(0.15);
-                        break;
-                    case 1: 
-                        updateTax(0.07);
-                        break;
-                    case 2: 
-                        updateTax(0.05);
-                        break;
+                else{
+                    precioCarrito += Math.round(price[j]*quantity[j]);
                 }
-                updateTotalCost();
-            });
-        }
+            }
+            document.getElementById("productCostText").innerHTML = "UYU " + precioCarrito;
+            switch (currentTax){
+                case 0: 
+                    updateTax(0.15);
+                    break;
+                case 1: 
+                    updateTax(0.07);
+                    break;
+                case 2: 
+                    updateTax(0.05);
+                    break;
+            }
+            updateTotalCost();
+        });
+    }
 }
 
 function updateTax(percentage){
