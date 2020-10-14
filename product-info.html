@@ -3,153 +3,161 @@
 <html lang="en">
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <title>eMercado - Todo lo que busques está aquí</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <title>eMercado - Todo lo que busques está aquí</title>
 
-  <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-  <link href="css/font-awesome.min.css" rel="stylesheet">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
-  <nav class="site-header sticky-top py-1 bg-dark">
-    <div class="container d-flex flex-column flex-md-row justify-content-between">
-      <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
-      <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
-      <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
-      <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-      <div class="dropdown">
-        <button id="dropdown_perfil" class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          Nombre
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="py-2 d-none d-md-inline-block dropdown-item" href="my-profile.html">Mi perfil</a>
-          <a class="py-2 d-none d-md-inline-block dropdown-item" href="cart.html">Carrito</a>
-          <a id="logoff" class="py-2 d-none d-md-inline-block dropdown-item" onclick="logoff()" href="">Cerrar sesión</a>
+    <nav class="site-header sticky-top py-1 bg-dark">
+        <div class="container d-flex flex-column flex-md-row justify-content-between">
+            <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
+            <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
+            <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
+            <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
+            <div class="dropdown">
+                <button id="dropdown_perfil" class="btn btn-secondary dropdown-toggle" type="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Nombre
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="py-2 d-none d-md-inline-block dropdown-item" href="my-profile.html">Mi perfil</a>
+                    <a class="py-2 d-none d-md-inline-block dropdown-item" href="cart.html">Carrito</a>
+                    <a id="logoff" class="py-2 d-none d-md-inline-block dropdown-item" onclick="logoff()" href="">Cerrar
+                        sesión</a>
+                </div>
+            </div>
+            <script type="text/javascript">
+                function logoff() {
+                    localStorage.removeItem("usuario");
+                    sessionStorage.removeItem("usuario");
+                }
+            </script>
         </div>
-      </div>
-      <script type="text/javascript">
-        function logoff() { localStorage.removeItem("usuario"); sessionStorage.removeItem("usuario"); }
-      </script>
-    </div>
-    </div>
-  </nav>
-  <main role="main">
-      <div class="text-center p-4">
-        <h2>Descripción del producto</h2>
-        <p class="lead">Encontrarás aquí toda la información del producto seleccionado.</p>
-      </div>
-    <div class="container">
-      <p class="small alert-warning py-3 text-center"><strong>Nota: </strong>por simplicidad, cualquiera sea el producto
-        seleccionado previamente, siempre se visualizará el presente: <strong>Chevrolet Onix Joy</strong>.</p>
-      <h3 id="productName"></h3>
-      <hr class="my-3">
-      <dl>
-        <div class="flex-container">
-          <div class="column">
-            <dd>
-              <div class="row text-center text-lg-left pt-2" id="productImagesGallery">
-              </div>
-            </dd>
-          </div>
-          <div class="column">
-            <dt>Descripción</dt>
-            <dd>
-              <p id="productDescription"></p>
-            </dd>
-            <dt>Precio</dt>
-            <dd>
-              <p id="productCost"></p>
-            </dd>
-            <dt>Cantidad de vendidos</dt>
-            <dd>
-              <p id="productSoldCount"></p>
-            </dd>
-            <dt>Categorías</dt>
-            <dd>
-              <p id="productCategory"></p>
-            </dd>
-          </div>
         </div>
-        <br>
-        <hr>
-        <br>
-        <dt>
-          <h5>Productos relacionados</h5>
-        </dt>
-        <dd>
-          <div id="productRelated" style="display:flex;"></div>
-        </dd>
-        <br>
-        <dt>
-          <h5>Comentarios</h5>
-        </dt>
-        <dd>
-          <div id="productComments"></div>
-        </dd>
-        <dd>
-          <div id="commentBox">
-            <form id="commentForm">
-                 <div id="commentItems">
-                  <textarea id="commentArea" class="form-control block" cols="20" rows="3" id="comment"></textarea>
-                   <div id="starRating" style="width:fit-content; height: fit-parent; margin: auto;">
-                    <label for="chkstar1">
-                      <i id="star1" class="fa fa-star-o" style="font-size:24px; margin-top: 10px;"></i>
-                    </label>
-                    <input type="checkbox" id="chkstar1" class="hidecheckbox">
-                    <label for="chkstar2">
-                      <i id="star2"  class="fa fa-star-o" style="font-size:24px"></i>
-                    </label>
-                    <input type="checkbox" id="chkstar2" class="hidecheckbox">
-                    <label for="chkstar3">
-                      <i id="star3"  class="fa fa-star-o" style="font-size:24px"></i>
-                    </label>
-                    <input type="checkbox" id="chkstar3" class="hidecheckbox">
-                    <label for="chkstar4">
-                      <i id="star4"  class="fa fa-star-o" style="font-size:24px"></i>
-                    </label>
-                    <input type="checkbox" id="chkstar4" class="hidecheckbox">
-                    <label for="chkstar5">
-                      <i id="star5"  class="fa fa-star-o" style="font-size:24px"></i>
-                    </label>
-                    <input type="checkbox" id="chkstar5" class="hidecheckbox">
-                   </div>
-                  <button class="btn-primary btn-block btn-lg" style="margin-top: 0.35em">Publicar comentario</button>
-                 </div>
-            </form>
-          </div>
-        </dd>
-      </dl>
+    </nav>
+    <main role="main">
+        <div class="text-center p-4">
+            <h2>Descripción del producto</h2>
+            <p class="lead">Encontrarás aquí toda la información del producto seleccionado.</p>
+        </div>
+        <div class="container">
+            <p class="small alert-warning py-3 text-center"><strong>Nota: </strong>por simplicidad, cualquiera sea el
+                producto
+                seleccionado previamente, siempre se visualizará el presente: <strong>Chevrolet Onix Joy</strong>.</p>
+            <h3 id="productName"></h3>
+            <hr class="my-3">
+            <dl>
+                <div class="flex-container">
+                    <div class="column">
+                        <dd>
+                            <div class="row text-center text-lg-left pt-2" id="productImagesGallery">
+                            </div>
+                        </dd>
+                    </div>
+                    <div class="column">
+                        <dt>Descripción</dt>
+                        <dd>
+                            <p id="productDescription"></p>
+                        </dd>
+                        <dt>Precio</dt>
+                        <dd>
+                            <p id="productCost"></p>
+                        </dd>
+                        <dt>Cantidad de vendidos</dt>
+                        <dd>
+                            <p id="productSoldCount"></p>
+                        </dd>
+                        <dt>Categorías</dt>
+                        <dd>
+                            <p id="productCategory"></p>
+                        </dd>
+                    </div>
+                </div>
+                <br>
+                <hr>
+                <br>
+                <dt>
+                    <h5>Productos relacionados</h5>
+                </dt>
+                <dd>
+                    <div id="productRelated" style="display:flex;"></div>
+                </dd>
+                <br>
+                <dt>
+                    <h5>Comentarios</h5>
+                </dt>
+                <dd>
+                    <div id="productComments"></div>
+                </dd>
+                <dd>
+                    <div id="commentBox">
+                        <form id="commentForm">
+                            <div id="commentItems">
+                                <textarea id="commentArea" class="form-control block" cols="20" rows="3"
+                                    id="comment"></textarea>
+                                <div id="starRating" style="width:fit-content; height: fit-parent; margin: auto;">
+                                    <label for="chkstar1">
+                                        <i id="star1" class="fa fa-star-o"
+                                            style="font-size:24px; margin-top: 10px;"></i>
+                                    </label>
+                                    <input type="checkbox" id="chkstar1" class="hidecheckbox">
+                                    <label for="chkstar2">
+                                        <i id="star2" class="fa fa-star-o" style="font-size:24px"></i>
+                                    </label>
+                                    <input type="checkbox" id="chkstar2" class="hidecheckbox">
+                                    <label for="chkstar3">
+                                        <i id="star3" class="fa fa-star-o" style="font-size:24px"></i>
+                                    </label>
+                                    <input type="checkbox" id="chkstar3" class="hidecheckbox">
+                                    <label for="chkstar4">
+                                        <i id="star4" class="fa fa-star-o" style="font-size:24px"></i>
+                                    </label>
+                                    <input type="checkbox" id="chkstar4" class="hidecheckbox">
+                                    <label for="chkstar5">
+                                        <i id="star5" class="fa fa-star-o" style="font-size:24px"></i>
+                                    </label>
+                                    <input type="checkbox" id="chkstar5" class="hidecheckbox">
+                                </div>
+                                <button class="btn-primary btn-block btn-lg" style="margin-top: 0.35em">Publicar
+                                    comentario</button>
+                            </div>
+                        </form>
+                    </div>
+                </dd>
+            </dl>
+        </div>
+    </main>
+    <footer class="text-muted">
+        <div class="container">
+            <p class="float-right">
+                <a href="#">Volver arriba</a>
+            </p>
+            <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
+            <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+        </div>
+    </footer>
+    <div id="spinner-wrapper">
+        <div class="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
     </div>
-  </main>
-  <footer class="text-muted">
-    <div class="container">
-      <p class="float-right">
-        <a href="#">Volver arriba</a>
-      </p>
-      <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
-      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
-    </div>
-  </footer>
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/product-info.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/product-info.js"></script>
 </body>
 
 </html>

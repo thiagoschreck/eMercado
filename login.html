@@ -7,7 +7,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="google-signin-client_id" content="932735781756-4qes7pllcdmls039srbpjtt68sru33gp.apps.googleusercontent.com"> <!-- no me lo roben porfa -->
+    <meta name="google-signin-client_id"
+        content="932735781756-4qes7pllcdmls039srbpjtt68sru33gp.apps.googleusercontent.com">
+    <!-- no me lo roben porfa -->
     <title>eMercado - Todo lo que busques está aquí</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
@@ -34,6 +36,7 @@
         }
     </style>
 </head>
+
 <body>
     <div style="margin: auto">
         <img class="signin_img" src="img/login.png" alt="Login image">
@@ -47,7 +50,8 @@
                         <input type="password" id="pwd" class="form-control" placeholder="Contraseña" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <input type="checkbox" id="chk_remember" data-toggle="popover" data-trigger="hover" data-content="Guardar credenciales">
+                                <input type="checkbox" id="chk_remember" data-toggle="popover" data-trigger="hover"
+                                    data-content="Guardar credenciales">
                             </div>
                         </div>
                     </div>
@@ -56,18 +60,20 @@
                     <script>
                         var profile = googleUser.getBasicProfile();
                         var auth2 = gapi.auth2.getAuthInstance();
-                            function onLoad() {
-                                gapi.load('auth2', function() {
-                                    gapi.auth2.init();
-                                });
-                            }
-                        function onSignIn(googleUser){
+
+                        function onLoad() {
+                            gapi.load('auth2', function () {
+                                gapi.auth2.init();
+                            });
+                        }
+
+                        function onSignIn(googleUser) {
                             let usuario = Array({
                                 correo: profile.getEmail().value,
                                 pass: profile.getID().value
                             });
                             localStorage.setItem('usuario', JSON.stringify(usuario));
-                            location.href='./index.html';
+                            location.href = './index.html';
                         }
                     </script>
                     <button id="btn_registro" class="btn btn-secondary btn-sm btn-block withzoom">Registrarme</button>

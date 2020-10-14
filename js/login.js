@@ -6,39 +6,38 @@ const btn_ingresar = document.getElementById("btn_ingresar");
 const btn_registro = document.getElementById("btn_registro");
 
 form.addEventListener("submit", function (event) {
-	event.preventDefault()
-	let usuario = email.value;
-	let password = pwd.value;
+    event.preventDefault()
+    let usuario = email.value;
+    let password = pwd.value;
 
-    if(chk_remember.checked == true){
+    if (chk_remember.checked == true) {
         localStorage.setItem('usuario', usuario);
         localStorage.setItem('password', password);
-        location.href='./index.html';
-    }
-    else{
+        location.href = './index.html';
+    } else {
         sessionStorage.setItem('usuario', usuario);
         sessionStorage.setItem('password', password);
-        location.href='./index.html';
+        location.href = './index.html';
     }
 });
 
-chk_remember.addEventListener("mouseover", function(event) {
+chk_remember.addEventListener("mouseover", function (event) {
     btn_ingresar.innerHTML = "¿Guardar credenciales?";
 });
 
-chk_remember.addEventListener("mouseleave", function(event) {
+chk_remember.addEventListener("mouseleave", function (event) {
     btn_ingresar.innerHTML = "Ingresar";
 });
 
-btn_ingresar.addEventListener("mouseleave", function(event){
+btn_ingresar.addEventListener("mouseleave", function (event) {
     btn_ingresar.setAttribute("style", "background-color: rgb(214, 28, 108)")
 });
 
-btn_registro.addEventListener("mouseover", function(event) {
+btn_registro.addEventListener("mouseover", function (event) {
     btn_registro.innerHTML = "Actualmente en desarrollo";
 });
 
-btn_registro.addEventListener("mouseleave", function(event) {
+btn_registro.addEventListener("mouseleave", function (event) {
     btn_registro.innerHTML = "Registrarme";
 });
 
