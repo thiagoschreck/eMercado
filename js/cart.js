@@ -1,3 +1,4 @@
+var cartArray = [];
 var currency = [];
 var price = [];
 var quantity = [];
@@ -18,7 +19,7 @@ function loadCartList(array) { // Cargo la tabla
                 <td style="width:15%"><img width="80%" src="` + product.src + `" alt="placeholder"></td>
                 <td>` + product.name + `</td>
                 <td class="articleCost">` + product.currency + " " + product.unitCost + `</td>
-                <td><input class="articleQuantity " type="number" min="1" value="` + product.count + `" style="min-width: 2em; width: 3em"></td>
+                <td><input class="articleQuantity " type="number" min="0" value="` + product.count + `" style="min-width: 2em; width: 3em"></td>
                 <td class="articleTotal">` + product.currency + " " + (product.unitCost * product.count) + `</td>
             </tr>
             `
@@ -47,11 +48,6 @@ function loadCartList(array) { // Cargo la tabla
     for (let i = 0; i < articleRow.length; i++) {
         articleRow[i].addEventListener("change", function () {
             quantity[i] = document.getElementsByClassName("articleQuantity")[i].value;
-            //Controla que la cantidad no sea menor a 1
-            if (quantity[i] < 1) {
-                quantity[i] = 1;
-                document.getElementsByClassName("articleQuantity")[i].value = quantity[i];
-            }
             articleTotal[i].innerHTML = currency[i] + " " + (price[i] * quantity[i]);
 
             precioCarrito = 0;
@@ -62,6 +58,11 @@ function loadCartList(array) { // Cargo la tabla
                     precioCarrito += Math.round(price[j] * quantity[j]);
                 }
             }
+            //Controla que la cantidad no sea menor a 1
+            if (quantity[i] < 1) {
+            articleRow[i].style.display='none';
+            }
+            
             document.getElementById("productCostText").innerHTML = "UYU " + precioCarrito;
             switch (currentTax) {
                 case 0:
@@ -78,6 +79,12 @@ function loadCartList(array) { // Cargo la tabla
         });
     }
 }
+
+// function loadInArray(input){
+//     for (i=0; i<input.length; i++){
+//         cartArray[i] = 
+//     }
+// }
 
 function updateTax(percentage) {
     impuestoCarrito = Math.round(precioCarrito * percentage);
