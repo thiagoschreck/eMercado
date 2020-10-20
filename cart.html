@@ -124,13 +124,16 @@
                             <span>Total ($)</span>
                             <strong id="totalCostText">-</strong>
                         </li>
-                    </ul>
+                    </ul><br>
                     <hr class="mb-4">
-                    <button class="btn btn-primary btn-lg" type="submit">Comprar</button>
+                    <button type="button" class="btn btn-primary btn-lg withzoom" data-toggle="modal"
+                            data-target="#paymentType">Continuar</button>
                 </form>
+                <br>
             </div>
         </div>
     </div>
+
     <br>
     <footer class="text-muted bg-light">
         <div class="container">
@@ -176,11 +179,56 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary withzoom" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="paymentType">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Forma de pago</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <form action="">
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <label for="ccName">Nombre</label>
+                                    <input type="text" class="form-control" id="ccName" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <label for="ccNumber">Número de la tarjeta</label>
+                                    <input type="text" class="form-control" id="ccNumber" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="ccExp">Vencimiento (mm/aa)</label>
+                                    <input type="text" class="form-control" id="ccExp" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="ccCode">Codigo de seguridad</label>
+                                    <input type="text" class="form-control" id="ccCode" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-block btn-primary withzoom" data-dismiss="modal">Comprar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="spinner-wrapper">
         <div class="lds-ring">
             <div></div>

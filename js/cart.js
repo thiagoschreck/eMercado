@@ -6,7 +6,8 @@ var quantity = [];
 var precioCarrito = 0;
 var impuestoCarrito = 0;
 var totalCarrito = 0;
-var currentTax = 0;
+var taxType = 0;
+var currentPaymentForm = 0;
 
 function loadCartList(array) { // Cargo la tabla
 
@@ -19,7 +20,7 @@ function loadCartList(array) { // Cargo la tabla
                 <td style="width:15%"><img width="80%" src="` + product.src + `" alt="placeholder"></td>
                 <td>` + product.name + `</td>
                 <td class="articleCost">` + product.currency + " " + product.unitCost + `</td>
-                <td><input class="articleQuantity " type="number" min="0" value="` + product.count + `" style="min-width: 2em; width: 3em"></td>
+                <td><input class="articleQuantity form-control" type="number" min="0" value="` + product.count + `" style="min-width: 4em; width: 4em"></td>
                 <td class="articleTotal">` + product.currency + " " + (product.unitCost * product.count) + `</td>
             </tr>
             `
@@ -64,7 +65,7 @@ function loadCartList(array) { // Cargo la tabla
             }
             
             document.getElementById("productCostText").innerHTML = "UYU " + precioCarrito;
-            switch (currentTax) {
+            switch (taxType) {
                 case 0:
                     updateTax(0.15);
                     break;
@@ -80,12 +81,6 @@ function loadCartList(array) { // Cargo la tabla
     }
 }
 
-// function loadInArray(input){
-//     for (i=0; i<input.length; i++){
-//         cartArray[i] = 
-//     }
-// }
-
 function updateTax(percentage) {
     impuestoCarrito = Math.round(precioCarrito * percentage);
     document.getElementById("comissionText").innerHTML = "UYU " + impuestoCarrito;
@@ -99,17 +94,17 @@ function updateTotalCost() {
 document.getElementById("premiumradio").addEventListener("change", function () {
     updateTax(0.15);
     updateTotalCost();
-    currentTax = 0;
+    taxType = 0;
 });
 document.getElementById("expressradio").addEventListener("change", function () {
     updateTax(0.07);
     updateTotalCost();
-    currentTax = 1;
+    taxType = 1;
 });
 document.getElementById("standardradio").addEventListener("change", function () {
     updateTax(0.05);
     updateTotalCost();
-    currentTax = 2;
+    taxType = 2;
 });
 
 
@@ -123,7 +118,3 @@ document.addEventListener("DOMContentLoaded", function (e) {
         }
     });
 });
-
-// document.getElementsByTagName("input")[1].addEventListener("change", function(){
-//         alert("test");
-// });
