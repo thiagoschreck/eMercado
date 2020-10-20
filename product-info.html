@@ -59,11 +59,11 @@
                     <h3 id="productName"></h3>
                 </div>
                 <div class="col" style="min-width: fit-content;">
-                    <button class="btn btn-primary">
+                    <button class="btn btn-primary withzoom">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                        </svg>
                         Agregar al carrito
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
-                          </svg>
                     </button>
                 </div>
             </div>
@@ -105,17 +105,11 @@
                     <div id="productRelated" style="display:flex;"></div>
                 </dd>
                 <br>
-                <dt>
-                    <h5>Comentarios</h5>
-                </dt>
-                <dd>
-                    <div id="productComments"></div>
-                </dd>
                 <dd>
                     <div id="commentBox">
                         <form id="commentForm">
                             <div id="commentItems">
-                                <textarea id="commentArea" class="form-control block" cols="20" rows="3"
+                                <textarea id="commentArea" class="form-control block" cols="20" rows="4"
                                     id="comment"></textarea>
                                 <div id="starRating" style="width:fit-content; height: fit-parent; margin: auto;">
                                     <label for="chkstar1">
@@ -146,10 +140,17 @@
                         </form>
                     </div>
                 </dd>
+                <br>
+                <dt>
+                    <h5>Comentarios</h5>
+                </dt>
+                <dd>
+                    <div id="productComments"></div>
+                </dd>
             </dl>
         </div>
     </main>
-    <footer class="text-muted">
+    <footer class="text-muted bg-light">
         <div class="container">
             <p class="float-right">
                 <a href="#">Volver arriba</a>
