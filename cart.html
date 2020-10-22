@@ -124,8 +124,8 @@
                             <span>Total ($)</span>
                             <strong id="totalCostText">-</strong>
                         </li>
-                    </ul><br>
-                    <hr class="mb-4">
+                    </ul>
+                    <br>
                     <button type="button" class="btn btn-primary btn-lg withzoom" data-toggle="modal"
                         data-target="#paymentType">Continuar</button>
                 </form>
@@ -196,19 +196,19 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        <form action="">
-                            <div class="row">
+                        <form onsubmit = "return false">
+                            <div class="form-row">
                                 <div class="col-md-12 mb-3">
                                     <input type="text" class="form-control" id="ccName" placeholder="Nombre" required>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="form-row">
                                 <div class="col-md-12 mb-3">
-                                    <input type="text" class="form-control" id="ccNumber"
+                                    <input type="text" class="form-control ccNumber" id="ccNumber"
                                         placeholder="Número de la tarjeta" required>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="form-row">
                                 <div class="col-md-6 mb-3">
                                     <input type="text" class="form-control" id="ccExp" placeholder="Vencimiento (mm/aa)"
                                         required>
@@ -218,9 +218,8 @@
                                         placeholder="Codigo de seguridad" required>
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-block btn-primary withzoom" data-dismiss="modal"
-                                    type="submit">
+                            <div class="form-row modal-footer">
+                                <button type="submit" class="btn btn-block btn-primary withzoom">
                                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-credit-card"
                                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"

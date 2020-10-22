@@ -61,9 +61,9 @@ function loadCartList(array) { // Cargo la tabla
             }
             //Controla que la cantidad no sea menor a 1
             if (quantity[i] < 1) {
-            articleRow[i].style.display='none';
+                articleRow[i].style.display = 'none';
             }
-            
+
             document.getElementById("productCostText").innerHTML = "UYU " + precioCarrito;
             switch (taxType) {
                 case 0:
@@ -91,6 +91,55 @@ function updateTotalCost() {
     document.getElementById("totalCostText").innerHTML = "UYU " + totalCarrito;
 }
 
+function getCardType() {
+    let num = document.getElementById("ccNumber").value;
+    let numArr = num.split('');
+    if (numArr[0] == 3 && (numArr[1] == 4 || numArr[1] == 7)) {
+        alert('American Express');
+    }
+    if (numArr[0] == 4) {
+        alert('Visa');
+    }
+    if (numArr[0] == 3 && numArr[1] == 0 && ((1 <= numArr[2]) && (numArr[2] <= 5) || (numArr[2] == 9))) {
+        alert('Diners Club');
+    }
+    if (((numArr[0] == 5) && ((numArr[1] >= 1) && (numArr[1] <= 5))) || ((numArr[0] == 2) && ((numArr[1] >= 2) && (numArr[1] <= 7)))) {
+        alert('MasterCard');
+    }
+    if((num.split('',2) == '3,5') || (num.split('',4) == '2,1,3,1') || (num.split('',4) == '1,8,0,0')){
+        alert('JCB');
+    }
+    if((num.split('',4) == '6,0,1,1') || (num.split('',2) == '6,5') || ((num.split('', 2) == '6,4') && (numArr[2] >= 4) && (numArr[2] <= 9))){
+        alert('Discover');
+    }
+}
+
+function validateCard(){
+    //funcion tomada de https://gist.github.com/DiegoSalazar/4075533
+    let value = document.getElementById("ccNumber").value;
+    if (/[^0-9-\s]+/.test(value)) return false;
+    
+	let nCheck = 0, bEven = false;
+	value = value.replace(/\D/g, "");
+
+	for (var n = value.length - 1; n >= 0; n--) {
+		var cDigit = value.charAt(n),
+			  nDigit = parseInt(cDigit, 10);
+
+		if (bEven && (nDigit *= 2) > 9) nDigit -= 9;
+
+		nCheck += nDigit;
+		bEven = !bEven;
+	}
+
+	alert((nCheck % 10) == 0);
+}
+
+document.getElementById("ccNumber").addEventListener("change", function () {
+    getCardType();
+    validateCard();
+})
+
 document.getElementById("premiumradio").addEventListener("change", function () {
     updateTax(0.15);
     updateTotalCost();
@@ -106,7 +155,6 @@ document.getElementById("standardradio").addEventListener("change", function () 
     updateTotalCost();
     taxType = 2;
 });
-
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
