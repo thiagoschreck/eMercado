@@ -93,51 +93,127 @@ function updateTotalCost() {
 
 function getCardType() {
     let num = document.getElementById("ccNumber").value;
+    let brandBadge = document.getElementById("brandBadge");
+
     let numArr = num.split('');
     if (numArr[0] == 3 && (numArr[1] == 4 || numArr[1] == 7)) {
-        alert('American Express');
-    }
-    if (numArr[0] == 4) {
-        alert('Visa');
-    }
-    if (numArr[0] == 3 && numArr[1] == 0 && ((1 <= numArr[2]) && (numArr[2] <= 5) || (numArr[2] == 9))) {
-        alert('Diners Club');
-    }
-    if (((numArr[0] == 5) && ((numArr[1] >= 1) && (numArr[1] <= 5))) || ((numArr[0] == 2) && ((numArr[1] >= 2) && (numArr[1] <= 7)))) {
-        alert('MasterCard');
-    }
-    if((num.split('',2) == '3,5') || (num.split('',4) == '2,1,3,1') || (num.split('',4) == '1,8,0,0')){
-        alert('JCB');
-    }
-    if((num.split('',4) == '6,0,1,1') || (num.split('',2) == '6,5') || ((num.split('', 2) == '6,4') && (numArr[2] >= 4) && (numArr[2] <= 9))){
-        alert('Discover');
+        // alert('American Express');
+        brandBadge.innerHTML = "American Express";
+    } else if (numArr[0] == 4) {
+        // alert('Visa');
+        brandBadge.innerHTML = "Visa";
+    } else if (numArr[0] == 3 && numArr[1] == 0 && ((1 <= numArr[2]) && (numArr[2] <= 5) || (numArr[2] == 9))) {
+        // alert('Diners Club');
+        brandBadge.innerHTML = "Diners Club";
+    } else if (((numArr[0] == 5) && ((numArr[1] >= 1) && (numArr[1] <= 5))) || ((numArr[0] == 2) && ((numArr[1] >= 2) && (numArr[1] <= 7)))) {
+        // alert('MasterCard');
+        brandBadge.innerHTML = "Master Card";
+    } else if ((num.split('', 2) == '3,5') || (num.split('', 4) == '2,1,3,1') || (num.split('', 4) == '1,8,0,0')) {
+        // alert('JCB');
+        brandBadge.innerHTML = "JCB";
+    } else if ((num.split('', 4) == '6,0,1,1') || (num.split('', 2) == '6,5') || ((num.split('', 2) == '6,4') && (numArr[2] >= 4) && (numArr[2] <= 9))) {
+        // alert('Discover');
+        brandBadge.innerHTML = "Discover";
+    } else {
+        brandBadge.innerHTML = "";
     }
 }
 
-function validateCard(){
-    //funcion tomada de https://gist.github.com/DiegoSalazar/4075533
+function expSlash() {
+    let code = document.getElementById("ccExp");
+    if (code.value.length == 2) {
+        let hasSlash = false;
+        for (let i = 0; i < code.value.length; i++) {
+            if (code.value[i] == "/") {
+                hasSlash = true;
+                break;
+            }
+        }
+        if (!hasSlash) {
+            code.value += "/";
+        }
+    } else if (code.value.length == 4) {
+        let hasSlash = false;
+        for (let i = 0; i < code.value.length; i++) {
+            if (code.value[i] == "/") {
+                hasSlash = true;
+                break;
+            }
+        }
+        if (!hasSlash) {
+            code.value = code.value[0] + code.value[1] + "/" + code.value[2] + code.value[3];
+        }
+    } else if (code.value.length >= 5) {
+        let hasSlash = false;
+        for (let i = 0; i < code.value.length; i++) {
+            if (code.value[i] == "/") {
+                hasSlash = true;
+                break;
+            }
+        }
+        if (!hasSlash) {
+            code.value = code.value[0] + code.value[1] + "/" + code.value[2] + code.value[3];
+        }
+    }
+}
+
+function validateCard() {
+    //funcion tomada de https://gist.github.com/DiegoSalazar/4075533 (usa el Algoritmo de Luhn)
     let value = document.getElementById("ccNumber").value;
-    if (/[^0-9-\s]+/.test(value)) return false;
-    
-	let nCheck = 0, bEven = false;
-	value = value.replace(/\D/g, "");
+    let verificationBadge = document.getElementById("verificationBadge");
 
-	for (var n = value.length - 1; n >= 0; n--) {
-		var cDigit = value.charAt(n),
-			  nDigit = parseInt(cDigit, 10);
+    if (value.length > 13) {
+        if (/[^0-9-\s]+/.test(value)) return false;
 
-		if (bEven && (nDigit *= 2) > 9) nDigit -= 9;
+        let nCheck = 0,
+            bEven = false;
+        value = value.replace(/\D/g, "");
 
-		nCheck += nDigit;
-		bEven = !bEven;
-	}
+        for (var n = value.length - 1; n >= 0; n--) {
+            var cDigit = value.charAt(n),
+                nDigit = parseInt(cDigit, 10);
 
-	alert((nCheck % 10) == 0);
+            if (bEven && (nDigit *= 2) > 9) nDigit -= 9;
+
+            nCheck += nDigit;
+            bEven = !bEven;
+        }
+        if (value.length > 13) {
+            if (!(nCheck % 10) == 0) {
+                verificationBadge.innerHTML = "Número inválido";
+                return false;
+            } else {
+                verificationBadge.innerHTML = "";
+            }
+        }
+    } else if (value.length == 0) {
+        verificationBadge.innerHTML = "";
+        return false;
+    }
 }
 
-document.getElementById("ccNumber").addEventListener("change", function () {
+function validarCampos() {
+    let nombre = document.getElementById("ccName").value;
+    var letras = /^[a-zA-Z][a-zA-Z\s]*$/;
+    if (!(nombre.match(letras))) {
+        alert("Por favor, ingrese un nombre válido.");
+    }
+    else if ((document.getElementById("verificationBadge").innerHTML != "") || (document.getElementById("brandBadge").innerHTML == "")) {
+        alert("Por favor, verifique el número de la tarjeta.");
+    }
+    else{
+        alert("Compra exitosa!");
+        window.location.assign("index.html");        
+    }
+}
+
+document.getElementById("ccNumber").addEventListener("keyup", function () {
     getCardType();
     validateCard();
+});
+
+document.getElementById("ccExp").addEventListener("keyup", function () {
+    expSlash();
 })
 
 document.getElementById("premiumradio").addEventListener("change", function () {
@@ -154,6 +230,11 @@ document.getElementById("standardradio").addEventListener("change", function () 
     updateTax(0.05);
     updateTotalCost();
     taxType = 2;
+});
+
+
+document.getElementById("btnComprar").addEventListener("click", function () {
+    validarCampos();
 });
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
