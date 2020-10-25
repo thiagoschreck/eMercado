@@ -22,6 +22,13 @@ function loadCartList(array) { // Cargo la tabla
                 <td class="articleCost">` + product.currency + " " + product.unitCost + `</td>
                 <td><input class="articleQuantity form-control" type="number" min="0" value="` + product.count + `" style="min-width: 4em; width: 4em"></td>
                 <td class="articleTotal">` + product.currency + " " + (product.unitCost * product.count) + `</td>
+                <td class="btn-removeItem">
+                    <button type="button"" class="button btn-danger">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                    </button>
+                </td>
             </tr>
             `
         document.getElementById(
@@ -52,16 +59,15 @@ function loadCartList(array) { // Cargo la tabla
             articleTotal[i].innerHTML = currency[i] + " " + (price[i] * quantity[i]);
 
             precioCarrito = 0;
-            for (j = 0; j < articleRow.length; j++) {
+            for (let j = 0; j < articleRow.length; j++) {
                 if (currency[j] == "USD") {
                     precioCarrito += Math.round(price[j] * quantity[j] * 40);
                 } else {
                     precioCarrito += Math.round(price[j] * quantity[j]);
                 }
             }
-            //Controla que la cantidad no sea menor a 1
             if (quantity[i] < 1) {
-                articleRow[i].style.display = 'none';
+                removeItem(articleRow[i]);
             }
 
             document.getElementById("productCostText").innerHTML = "UYU " + precioCarrito;
@@ -78,7 +84,41 @@ function loadCartList(array) { // Cargo la tabla
             }
             updateTotalCost();
         });
+    document.getElementsByClassName("btn-removeItem")[i].addEventListener("click", function () {
+            removeItem(articleRow[i]);
+            quantity[i] = document.getElementsByClassName("articleQuantity")[i].value;
+            quantity[i] = 0;
+            articleTotal[i].innerHTML = currency[i] + " " + (price[i] * quantity[i]);
+
+            precioCarrito = 0;
+            for (let j = 0; j < articleRow.length; j++) {
+                if (currency[j] == "USD") {
+                    precioCarrito += Math.round(price[j] * quantity[j] * 40);
+                } else {
+                    precioCarrito += Math.round(price[j] * quantity[j]);
+                }
+            }
+
+            document.getElementById("productCostText").innerHTML = "UYU " + precioCarrito;
+            switch (taxType) {
+                case 0:
+                    updateTax(0.15);
+                    break;
+                case 1:
+                    updateTax(0.07);
+                    break;
+                case 2:
+                    updateTax(0.05);
+                    break;
+            }
+            updateTotalCost();
+        });    
     }
+    
+}
+
+function removeItem(item){
+    item.style.display = 'none';
 }
 
 function updateTax(percentage) {
