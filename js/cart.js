@@ -22,7 +22,7 @@ function loadCartList(array) { // Cargo la tabla
                 <td class="articleCost align-middle">` + product.currency + " " + product.unitCost + `</td>
                 <td class="align-middle"><input class="articleQuantity form-control" type="number" min="0" value="` + product.count + `" style="min-width: 4em; width: 4em"></td>
                 <td class="articleTotal align-middle">` + product.currency + " " + (product.unitCost * product.count) + `</td>
-                <td class="btn-removeItem align-middle">
+                <td class="btn-hideItem align-middle">
                     <button type="button"" class="button btn-danger">
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
@@ -67,7 +67,7 @@ function loadCartList(array) { // Cargo la tabla
                 }
             }
             if (quantity[i] < 1) {
-                removeItem(articleRow[i]);
+                hideItem(articleRow[i]);
             }
 
             document.getElementById("productCostText").innerHTML = "UYU " + precioCarrito;
@@ -84,8 +84,7 @@ function loadCartList(array) { // Cargo la tabla
             }
             updateTotalCost();
         });
-    document.getElementsByClassName("btn-removeItem")[i].addEventListener("click", function () {
-            removeItem(articleRow[i]);
+        document.getElementsByClassName("btn-hideItem")[i].addEventListener("click", function () {
             quantity[i] = document.getElementsByClassName("articleQuantity")[i].value;
             quantity[i] = 0;
             articleTotal[i].innerHTML = currency[i] + " " + (price[i] * quantity[i]);
@@ -111,13 +110,14 @@ function loadCartList(array) { // Cargo la tabla
                     updateTax(0.05);
                     break;
             }
+            hideItem(articleRow[i]);
             updateTotalCost();
-        });    
+        });
     }
-    
+
 }
 
-function removeItem(item){
+function hideItem(item) {
     item.style.display = 'none';
 }
 
@@ -197,6 +197,20 @@ function expSlash() {
     }
 }
 
+function validateDate(element){
+    let month = element.value[0] * 10 + element.value[1];
+    let year = element.value[3] * 10 + element.value[4];
+
+    if (month > 12){
+        element.value[0] = 1;
+        element.value[1] = 2;
+    }
+    else if (month < 1){
+        element.value[0] = 0;
+        element.value[1] = 1;
+    }
+}
+
 function validateCard() {
     //funcion tomada de https://gist.github.com/DiegoSalazar/4075533 (usa el Algoritmo de Luhn)
     let value = document.getElementById("ccNumber").value;
@@ -237,13 +251,11 @@ function validarCampos() {
     var letras = /^[a-zA-Z][a-zA-Z\s]*$/;
     if (!(nombre.match(letras))) {
         alert("Por favor, ingrese un nombre válido.");
-    }
-    else if ((document.getElementById("verificationBadge").innerHTML != "") || (document.getElementById("brandBadge").innerHTML == "")) {
+    } else if ((document.getElementById("verificationBadge").innerHTML != "") || (document.getElementById("brandBadge").innerHTML == "")) {
         alert("Por favor, verifique el número de la tarjeta.");
-    }
-    else{
+    } else {
         alert("Compra exitosa!");
-        window.location.assign("index.html");        
+        window.location.assign("index.html");
     }
 }
 
@@ -255,6 +267,11 @@ document.getElementById("ccNumber").addEventListener("keyup", function () {
 document.getElementById("ccExp").addEventListener("keyup", function () {
     expSlash();
 })
+
+document.getElementById("ccExp").addEventListener("change", function () {
+    validateDate(document.getElementById("ccExp"));
+})
+
 
 document.getElementById("premiumradio").addEventListener("change", function () {
     updateTax(0.15);
@@ -271,7 +288,6 @@ document.getElementById("standardradio").addEventListener("change", function () 
     updateTotalCost();
     taxType = 2;
 });
-
 
 document.getElementById("btnComprar").addEventListener("click", function () {
     validarCampos();
