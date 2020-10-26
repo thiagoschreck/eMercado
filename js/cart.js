@@ -18,11 +18,11 @@ function loadCartList(array) { // Cargo la tabla
             `
             <tr class="articleRow">
                 <td style="width:15%"><img width="80%" src="` + product.src + `" alt="placeholder"></td>
-                <td>` + product.name + `</td>
-                <td class="articleCost">` + product.currency + " " + product.unitCost + `</td>
-                <td><input class="articleQuantity form-control" type="number" min="0" value="` + product.count + `" style="min-width: 4em; width: 4em"></td>
-                <td class="articleTotal">` + product.currency + " " + (product.unitCost * product.count) + `</td>
-                <td class="btn-removeItem">
+                <td class="align-middle">` + product.name + `</td>
+                <td class="articleCost align-middle">` + product.currency + " " + product.unitCost + `</td>
+                <td class="align-middle"><input class="articleQuantity form-control" type="number" min="0" value="` + product.count + `" style="min-width: 4em; width: 4em"></td>
+                <td class="articleTotal align-middle">` + product.currency + " " + (product.unitCost * product.count) + `</td>
+                <td class="btn-removeItem align-middle">
                     <button type="button"" class="button btn-danger">
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x" fill="white" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
