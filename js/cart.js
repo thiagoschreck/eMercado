@@ -197,20 +197,6 @@ function expSlash() {
     }
 }
 
-function validateDate(element){
-    let month = element.value[0] * 10 + element.value[1];
-    let year = element.value[3] * 10 + element.value[4];
-
-    if (month > 12){
-        element.value[0] = 1;
-        element.value[1] = 2;
-    }
-    else if (month < 1){
-        element.value[0] = 0;
-        element.value[1] = 1;
-    }
-}
-
 function validateCard() {
     //funcion tomada de https://gist.github.com/DiegoSalazar/4075533 (usa el Algoritmo de Luhn)
     let value = document.getElementById("ccNumber").value;
@@ -267,11 +253,6 @@ document.getElementById("ccNumber").addEventListener("keyup", function () {
 document.getElementById("ccExp").addEventListener("keyup", function () {
     expSlash();
 })
-
-document.getElementById("ccExp").addEventListener("change", function () {
-    validateDate(document.getElementById("ccExp"));
-})
-
 
 document.getElementById("premiumradio").addEventListener("change", function () {
     updateTax(0.15);
