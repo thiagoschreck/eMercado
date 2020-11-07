@@ -31,16 +31,11 @@
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="py-2 d-none d-md-inline-block dropdown-item" href="my-profile.html">Mi perfil</a>
                     <a class="py-2 d-none d-md-inline-block dropdown-item" href="cart.html">Carrito</a>
-                    <a id="logoff" class="py-2 d-none d-md-inline-block dropdown-item" onclick="logoff()" href="">Cerrar
-                        sesión</a>
+                    <a id="logoff" class="py-2 d-none d-md-inline-block dropdown-item" onclick="logoff()" href="">
+                        Cerrar sesión
+                    </a>
                 </div>
             </div>
-            <script type="text/javascript">
-                function logoff() {
-                    localStorage.removeItem("usuario");
-                    sessionStorage.removeItem("usuario");
-                }
-            </script>
         </div>
     </nav>
     <main role="main" class="pb-5">

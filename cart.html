@@ -48,16 +48,11 @@
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="py-2 d-none d-md-inline-block dropdown-item" href="my-profile.html">Mi perfil</a>
                     <a class="py-2 d-none d-md-inline-block dropdown-item" href="cart.html">Carrito</a>
-                    <a id="logoff" class="py-2 d-none d-md-inline-block dropdown-item" onclick="logoff()" href="">Cerrar
-                        sesión</a>
+                    <a id="logoff" class="py-2 d-none d-md-inline-block dropdown-item" onclick="logoff()" href="">
+                        Cerrar sesión
+                    </a>
                 </div>
             </div>
-            <script type="text/javascript">
-                function logoff() {
-                    localStorage.removeItem("usuario");
-                    sessionStorage.removeItem("usuario");
-                }
-            </script>
         </div>
     </nav>
     <div class="text-center p-4">
@@ -69,7 +64,7 @@
             <div class="col-md-8 order-md-1">
                 <table class="table">
                     <thead>
-                        <th scope="col"></th> 
+                        <th scope="col"></th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Costo</th>
                         <th scope="col">Cantidad</th>
@@ -215,12 +210,13 @@
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6 mb-3">
-                                    <input type="text" class="form-control" id="ccExp" placeholder="Fecha de vencimiento"
-                                        minlength="5" maxlength="5" required>
+                                    <input type="text" class="form-control" id="ccExp"
+                                        placeholder="Fecha de vencimiento" minlength="5" maxlength="5" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <input type="text" class="form-control" id="ccCode"
-                                        placeholder="Código de seguridad" minlength="3" maxlength="3" inputmode="numeric" required>
+                                        placeholder="Código de seguridad" minlength="3" maxlength="3"
+                                        inputmode="numeric" required>
                                 </div>
                             </div>
                             <div class="form-row modal-footer">

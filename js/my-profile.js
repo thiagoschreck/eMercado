@@ -19,7 +19,18 @@ function toggleButton(){
         </svg>
         Modificar datos
         `
+        btn.attributes = "color: green";
     }
+}
+
+function updateData(){
+    var userName = document.getElementById("userFullName").value;
+    var userAge = document.getElementById("userAge").value;
+    var userEmail = document.getElementById("userEmail").value;
+    var userPhone = document.getElementById("userPhone").value;
+
+    var obj = { name: userName, age: userAge, email: userEmail, phone: userPhone};
+    localStorage.setItem("userData", JSON.stringify(obj));
 }
 
 function enableModification(){
@@ -29,6 +40,7 @@ function enableModification(){
             elem[i].classList.add("border-0");
             elem[i].toggleAttribute("disabled");
             toggleButton();
+            updateData();
             isModifiable = false;
         }
     }
