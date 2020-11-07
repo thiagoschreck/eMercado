@@ -146,6 +146,10 @@ footer p {
 	width: 100%;
 }
 
+.textEditButton{
+    min-height: 30px;
+}
+
 .withzoom {
 	transition: transform 0.5s;
 }
