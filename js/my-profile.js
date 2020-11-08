@@ -31,6 +31,7 @@ function enableModification() {
                 elem[i].classList.add("border-0");
                 elem[i].toggleAttribute("disabled");
             }
+            document.getElementById("imageButton").style = "visibility: hidden";
             toggleButton();
             saveProfileData();
             isModifiable = false;
@@ -41,6 +42,7 @@ function enableModification() {
             elem[i].classList.remove("border-0");
             elem[i].toggleAttribute("disabled");
         }
+        document.getElementById("imageButton").style = "visibility: unset";
         toggleButton();
         isModifiable = true;
     }
@@ -51,7 +53,9 @@ function getProfileData() {
     if(loginObj != null){
         document.getElementById("userImage").src = loginObj.image ;
         document.getElementById("userFullName").value = loginObj.name;
-        document.getElementById("userAge").value = loginObj.age + " años";
+        if (loginObj.age != ""){
+            document.getElementById("userAge").value = loginObj.age + " años";
+        }
         document.getElementById("userEmail").value = loginObj.email;
         document.getElementById("userPhone").value = loginObj.phone;
     }
@@ -72,10 +76,9 @@ function saveProfileData() {
         phone: userPhone
     };
     localStorage.setItem("userInfo", JSON.stringify(loginObj));
-
 }
 
-//Funció    n que se ejecuta una vez que se haya lanzado el evento de
+//Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function (e) {
@@ -83,5 +86,13 @@ document.addEventListener("DOMContentLoaded", function (e) {
     document.getElementById("toggleEditButton").addEventListener("click", function(event){
         event.preventDefault();
         enableModification();
+    });
+
+    document.getElementById("imageButton").addEventListener("change", function() {
+        const reader = new FileReader();
+        reader.readAsDataURL(this.files[0]);
+        reader.addEventListener("load", () => {
+            document.getElementById("userImage").setAttribute("src", reader.result);
+        });
     })
 });

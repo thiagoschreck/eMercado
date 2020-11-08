@@ -47,6 +47,29 @@ function sortProducts(criteria, array) {
     return result;
 }
 
+function createCard(object) {
+    let card = `
+                <div class="col-lg-4 col-md-6 col-sm-auto">
+                    <a href="product-info.html" class="card mb-4 shadow-sm custom-card withzoom">
+                    <img class="card-img-top" src="` + object.imgSrc + `" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">` + object.name + `</h5>
+                        <p class="card-text"><hr>` + object.description + `</p>
+                        <div class="row bg-light">
+                            <div class="col-6">
+                                <p class="card-text">` + object.soldCount + ` vendidos</p>
+                            </div>
+                            <div class="col-6">
+                                <p class="card-text float-right">` + object.cost + ` ` + object.currency + `</p>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+            </div>
+    `
+    return card;
+}
+
 function showProductsList() {
     let htmlContentToAppend = "";
     for (let i = 0; i < currentProductsArray.length; i++) {
@@ -63,38 +86,7 @@ function showProductsList() {
                 nombreProducto.indexOf(texto) !== -1)
         ) {
             htmlContentToAppend +=
-                `
-            <a href="product-info.html" class="list-group-item list-group-item-action">
-                <div class="row">
-                    <div class="col-3">
-                        <img src="` +
-                product.imgSrc +
-                `" alt="` +
-                product.description +
-                `" class="img-thumbnail">
-                    </div>
-                    <div class="col">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">` +
-                product.name +
-                `</h4>
-                            <small class="text-muted">` +
-                product.soldCount +
-                ` vendidos<br></small>
-                        </div>
-                        <div>` +
-                product.description +
-                `</div>
-                        <div id="precio">` +
-                product.currency +
-                " " +
-                product.cost +
-                `</div>
-                        
-                    </div>
-                </div>
-            </div>
-        `;
+                createCard(product);
         }
         document.getElementById(
             "prod-list-container"
