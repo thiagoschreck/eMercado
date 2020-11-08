@@ -71,8 +71,13 @@ if (sessionStorage.getItem('loginData') != null && getFileName() == "login.html"
 //elementos HTML presentes.
 
 document.addEventListener("DOMContentLoaded", function (e) {
+    var userInfo = JSON.parse(localStorage.getItem("userInfo"));
     if (getFileName() != "login.html") {
-        loginData = JSON.parse(sessionStorage.getItem("loginData"));
-        document.getElementById("dropdown_perfil").innerHTML = JSON.parse(sessionStorage.getItem("loginData")).username;
+        if(userInfo != null && userInfo.name != ""){
+            document.getElementById("dropdown_perfil").innerHTML = userInfo.name;
+        }
+        else{
+            document.getElementById("dropdown_perfil").innerHTML = JSON.parse(sessionStorage.getItem("loginData")).username;
+        }
     }
 });
