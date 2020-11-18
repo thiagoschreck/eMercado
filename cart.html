@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)https://getbootstrap.com/docs/4.3/examples/album/ -->
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <title>eMercado - Todo lo que busques está aquí</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/dropzone.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="site-header sticky-top py-1 bg-dark">
+        <div class="container d-flex flex-column flex-md-row justify-content-between">
+            <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
+            <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
+            <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
+            <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
+            <div class="dropdown">
+                <button id="dropdown_perfil" class="btn btn-secondary dropdown-toggle" type="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Nombre
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="py-2 d-none d-md-inline-block dropdown-item" href="my-profile.html">Mi perfil</a>
+                    <a class="py-2 d-none d-md-inline-block dropdown-item" href="cart.html">Carrito</a>
+                    <a id="logoff" class="py-2 d-none d-md-inline-block dropdown-item" onclick="logoff()" href="">
+                        Cerrar sesión
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="text-center p-4">
+        <h2>Carrito</h2>
+        <p class="lead">Visualiza los productos a comprar.</p>
+    </div>
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-md-8 order-md-1">
+                <table class="table">
+                    <thead>
+                        <th scope="col"></th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Costo</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Subtotal</th>
+                        <th scope="col"></th>
+                    </thead>
+                    <tbody id="cuerpo-carrito">
+                    </tbody>
+                </table>
+                <form class="needs-validation" id="sell-info">
+                    <hr class="mb-4">
+                    <h5 class="mb-3">Tipo de envío</h5>
+                    <div class="d-block my-3">
+                        <div class="custom-control custom-radio">
+                            <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input"
+                                checked="" required="">
+                            <label class="custom-control-label" for="premiumradio">Premium de 2 a 5 días (15%)</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input id="expressradio" name="publicationType" type="radio" class="custom-control-input"
+                                required="">
+                            <label class="custom-control-label" for="expressradio">Express de 5 a 8 días (7%)</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input id="standardradio" name="publicationType" type="radio" class="custom-control-input"
+                                required="">
+                            <label class="custom-control-label" for="standardradio">Standard de 12 a 15 días
+                                (5%)</label>
+                        </div>
+                        <div class="row">
+                            <button type="button" class="m-1 btn btn-link" data-toggle="modal"
+                                data-target="#contidionsModal">Ver condiciones</button>
+                        </div>
+                    </div>
+                    <hr class="mb-4">
+                    <h4 class="mb-3">Costos</h4>
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div>
+                                <h6 class="my-0">Subtotal</h6>
+                                <small class="text-muted">Costo unitario del producto por cantidad</small>
+                            </div>
+                            <span class="text-muted" id="productCostText">-</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div>
+                                <h6 class="my-0">Impuesto</h6>
+                                <small class="text-muted">Según el tipo de envío</small>
+                            </div>
+                            <span class="text-muted" id="comissionText">-</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Total ($)</span>
+                            <strong id="totalCostText">-</strong>
+                        </li>
+                    </ul>
+                    <br>
+                    <button type="button" class="btn btn-primary btn-lg withzoom" data-toggle="modal"
+                        data-target="#paymentType">Continuar</button>
+                </form>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <footer class="text-muted bg-light">
+        <div class="container">
+            <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
+            <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+        </div>
+    </footer>
+    <div class="alert fade" role="alert" id="alertResult">
+        <span id="resultSpan"></span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="contidionsModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Condiciones del tipo de envío</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <h5 class="text-warning">Premium (15%)</h5>
+                            <p class="muted text-justify">Tu envío será puesto con la mayor prioridad, para que salga
+                                volando hasta tu casa y llegue lo antes posible.</p>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <h5 class="text-primary">Express (7%)</h5>
+                            <p class="muted text-justify">Nos encargaremos de que tus productos estén en la puerta de tu
+                                casa la misma semana que lo compraste.</p>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <h5 class="text-secondary">Standard (5%)</h5>
+                            <p class="muted text-justify">Enviamos nuestros productos en tortugas mensajeras, para que
+                                en menos de dos semanas los tengas en tu domicilio.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary withzoom" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="paymentType">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Forma de pago</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <form onsubmit="return false">
+                            <div class="form-row">
+                                <div class="col-md-12 mb-3">
+                                    <input type="text" class="form-control" id="ccName" placeholder="Nombre" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12 mb-3" style="height: 24px;">
+                                    <input type="text" class="form-control ccNumber" id="ccNumber"
+                                        placeholder="Número de la tarjeta" required>
+                                </div>
+                                <div class="col-md-12 mb-3" style="margin-bottom: 0px">
+                                    <span id="brandBadge" class="badge badge-secondary"></span>
+                                    <span id="verificationBadge" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" id="ccExp"
+                                        placeholder="Fecha de vencimiento" minlength="5" maxlength="5" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" id="ccCode"
+                                        placeholder="Código de seguridad" minlength="3" maxlength="3"
+                                        inputmode="numeric" required>
+                                </div>
+                            </div>
+                            <div class="form-row modal-footer">
+                                <button type="submit" id="btnComprar" class="btn btn-block btn-primary withzoom">
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-credit-card"
+                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 
+                                               0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z" />
+                                        <path
+                                            d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z" />
+                                    </svg>
+                                    Comprar
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="spinner-wrapper">
+        <div class="lds-ring">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/dropzone.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+
+</html>
